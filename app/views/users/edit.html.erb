@@ -1,0 +1,21 @@
+<% if @user.errors.any? %>
+	<h2><%= @user.errors.count %>件のエラーがあります</h2>
+	<ul>
+		<% @user.errors.full_messages.each do |message| %>
+			<li style='color: red'><%= message %></li>
+		<% end %>
+	</ul>
+<% end %>
+<h2>User info</h2>
+<%= form_for (@user) do |f| %>
+	<p>
+	Name
+	<%= f.text_field :name %>
+	</p>
+	<p>Image</p>
+	<%= f.attachment_field :profile_image %>
+	<p>Introduction</p>
+	<%= f.text_area :introduction,placeholder: "自己紹介"
+	  %>
+	<%= f.submit "Update User "%>
+<% end %>

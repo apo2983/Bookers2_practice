@@ -1,0 +1,56 @@
+<style>
+.user-edit-icon:hover{
+	background-color: #8080807a;;
+}
+
+.field_with_errors label{
+	background-color: red;
+}
+
+.field_with_errors input{
+	border: 1px solid red;
+}
+
+.field_with_errors textarea{
+	border: 1px solid red;
+}
+/*.field_with_errors:nth-child(2n){
+	border: 1px solid red;
+}*/
+</style>
+
+<div class="col-xs-3">
+	<h2>User info</h2>
+	<%= link_to edit_user_path(current_user.id) do %>
+		<%= attachment_image_tag user,:profile_image,format:'jpeg',fallback:'no_image.jpg',size:'100x100' %>
+	<% end %>
+	<table class="table">
+		<tr>
+			<th>name</th>
+			<td><%= user.name %></th>
+		</tr>
+		<tr>
+			<th>introduction</th>
+			<td><%= user.introduction %></th>
+		</tr>
+	</table>
+	<% if @user == current_user %>
+		<%= link_to edit_user_path(user.id) do%>
+			<i class="fas fa-home col-xs-12 user-edit-icon"></i>
+		<% end %>
+	<% end %>
+	<h2>New book</h2>
+	<%= form_for(book,url:books_path,method: :post) do |f| %>
+		<div class="field"> 
+			<%= f.label :title ,"Title" %>
+			<%= f.text_field :title,class:"col-xs-12" %>
+		</div>
+		<div class="field">
+			<%= f.label :body ,"Opinion" %>
+			<%= f.text_area :body,class:"col-xs-12" %>
+		</div>
+		<div class="actions">
+			<%= f.submit "Create Book",class:'btn btn-primary col-xs-12 ' %>
+		</div>
+	<% end %>
+</div>
