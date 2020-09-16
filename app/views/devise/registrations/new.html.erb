@@ -5,12 +5,39 @@
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="field form-group">
       <%= f.label :name, "名前" %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name",class: 'form-control' %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
     </div>
+
     <div class="field">
       <%= f.label :email, "メールアドレス" %><br />
       <%= f.email_field :email, autocomplete: "email" %>
     </div>
+
+    <div class="field">
+        <%= f.label :postcode, "郵便番号" %><br />
+        <%= f.text_field :postcode %>
+    </div>
+
+    <div class="field">
+        <%= f.label :prefecture_code, "都道府県" %><br />
+        <%= f.collection_select :prefecture_code,JpPrefecture::Prefecture.all,:name,:name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :address_city, "市区町村" %><br />
+        <%= f.text_field :address_city %>
+    </div>
+
+    <div class="field">
+        <%= f.label :address_street, "番地" %><br />
+        <%= f.text_field :address_street %>
+    </div>
+
+    <div class="field">
+        <%= f.label :address_building, "建物何号室" %><br />
+        <%= f.text_field :address_building %>
+    </div>
+
 
     <div class="field">
       <%= f.label :password %>

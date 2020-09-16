@@ -67,3 +67,6 @@ gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'pry-byebug'
+gem 'jp_prefecture'
+gem 'simple_form'
+gem 'dotenv-rails'

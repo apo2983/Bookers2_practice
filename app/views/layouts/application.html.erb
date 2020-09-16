@@ -8,82 +8,86 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
   </head>
 
   <body>
     <header>
-      <div class="container">
-        <div class="row">
-          <h3>Bookers</h3>
-          <div class="list-box">
-            <ul>
-              <% if user_signed_in? %>
-              <li>
-                 <%= link_to user_path(current_user.id) do %>
-                  <i class="fas fa-home"></i>
-                  <p class="header-icon">Home</p>
-                <% end %>
-              </li>
-              <li>
-                 <%= link_to users_path do %>
-                  <i class="fas fa-home"></i>
-                  <p class="header-icon">Users</p>
-                <% end %>
-              </li>
-              <li>
-                 <%= link_to books_path do %>
-                  <i class="fas fa-home"></i>
-                  <p class="header-icon">Books</p>
-                <% end %>
-              <li>
-                 <%= link_to destroy_user_session_path,method: :delete do %>
-                  <i class="fas fa-home"></i>
-                  <p class="header-icon">logout</p>
-                <% end %>
-              </li>
-              <% else %>
-                <div>
-                  <i class="fas fa-edit"></i>
-                  <p>テストです</p>
-                </div>
-                <li>
-                 <%= link_to root_path do %>
-                  <i class="fas fa-home"></i>
-                  <p class="header-icon">Home</p>
-                <% end %>
-                </li>
-                <li>
-                 <%= link_to home_about_path do %>
-                  <i class="fas fa-home"></i>
-                  <p class="header-icon">About</p>
-                <% end %>
-               </li>
-                <li>
-                 <%= link_to new_user_registration_path do %>
-                  <i class="fas fa-home"></i>
-                  <p class="header-icon">sign up</p>
-                <% end %>
-                <li>
-                 <%= link_to new_user_session_path do %>
-                  <i class="fas fa-home"></i>
-                  <p class="header-icon">login</p>
-                <% end %>
-              <% end%>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <h3>Bookers</h3>
+      <div class="list-box">
+       <ul>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to user_path(current_user.id) do %>
+              <i class="fas fa-home"></i>
+              <p class="header-icon">Home</p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path do %>
+              <i class="fas fa-home"></i>
+              <p class="header-icon">Users</p>
+            <% end %>
+          </li>
+          <li>
+             <%= link_to books_path do %>
+              <i class="fas fa-home"></i>
+              <p class="header-icon">Books</p>
+             <% end %>
+          <li>
+             <%= link_to destroy_user_session_path,method: :delete do %>
+              <i class="fas fa-home"></i>
+              <p class="header-icon">logout</p>
+            <% end %>
+          </li>
+          <% else %>
+            <li>
+             <%= link_to root_path do %>
+              <i class="fas fa-home"></i>
+              <p class="header-icon">Home</p>
+            <% end %>
+            </li>
+            <li>
+             <%= link_to home_about_path do %>
+              <i class="fas fa-home"></i>
+              <p class="header-icon">About</p>
+            <% end %>
+           </li>
+            <li>
+             <%= link_to new_user_registration_path do %>
+              <i class="fas fa-home"></i>
+              <p class="header-icon">sign up</p>
+            <% end %>
+            <li>
+             <%= link_to new_user_session_path do %>
+              <i class="fas fa-home"></i>
+              <p class="header-icon">login</p>
+            <% end %>
+          <% end%>
+          </li>
+        </ul>
       </div>
-    </header>
-    <div class="container">
-      <% if flash[:notice]%>
-        <p style='color: green'><%= flash[:notice] %></p>
-      <% end %>
-      <% if flash[:alert]%>
-        <p style='color: red'><%= flash[:alert] %></p>
-      <% end %>
-    </div>
-    <div class="container">
+  </header>
+  <div class="container">
+      <div class="row">
+        <% if user_signed_in? %>
+          <div class="search-form　col-xs-4 col-xs-offset-4 mt-15">
+            <%= form_with url:search_path,method: :get,local: true  %>
+              <%= text_field_tag 'search[content]' %>
+              <%= select_tag 'search[model]',options_for_select({"User"=>"user","Book"=>"book"}) %>
+              <%= select_tag 'search[method]',options_for_select({"完全一致"=>"perfect","前方一致"=>"forward","後方一致"=>"backward","部分一致"=>"partial"})%>
+              <%= submit_tag "検索"%>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <% if flash[:notice]%>
+          <p style='color: green'><%= flash[:notice] %></p>
+        <% end %>
+        <% if flash[:alert]%>
+          <p style='color: red'><%= flash[:alert] %></p>
+        <% end %>
+      </div>
       <div class="row">
         <%= yield %>
       </div>

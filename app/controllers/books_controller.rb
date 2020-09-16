@@ -6,7 +6,6 @@ class BooksController < ApplicationController
   	@user = User.find(current_user.id)
   	@book_new = Book.new
   	@books = Book.all
-    binding.pry
 
   end
 
@@ -25,7 +24,6 @@ class BooksController < ApplicationController
   def show
   	@book = Book.find(params[:id])
   	@user = current_user
-    @user_1 = User.find(@book.user_id)
   	@book_new = Book.new
     @book_comment = BookComment.new
     @book_comments = @book.book_comments

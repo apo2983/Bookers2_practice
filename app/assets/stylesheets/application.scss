@@ -16,6 +16,10 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+.mt-15{
+	margin-top: 15px;
+}
+
 header{
 width: 100%;
 background-color: black;
@@ -33,6 +37,10 @@ display: inline-block;
 color: white;
 margin-right: 25px;
 font-size: 16px;
+}
+
+p.header-icon{
+	display: inline-block;
 }
 
 h3{
@@ -58,5 +66,22 @@ top: 12px;
     padding: 5px 0px;
 }
 
+.image1 {
+    background-image: url(image1.jpg);
+  }
+  .image2 {
+    background-image: url(image2.jpg);
+  }
+  .image3 {
+    background-image: url(image3.jpg);
+  }
+  .image4 {
+    background-image: url(image4.jpg);
+  }
+  .image5 {
+    background-image: url(image5.jpg);
+  }
 
-
+  #container{
+      height: 500px;
+  }
