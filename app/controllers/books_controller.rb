@@ -10,13 +10,13 @@ class BooksController < ApplicationController
   end
 
   def create
-  	@user = User.find(current_user.id)
-  	@books =  Book.all
   	@book_new = Book.new(book_params)
   	@book_new.user_id = current_user.id
   	if @book_new.save
   		redirect_to book_path(@book_new.id),notice:"投稿成功!"
-  	else
+		else
+			@user = User.find(current_user.id)
+  		@books =  Book.all
   		render 'index'
   	end
   end
