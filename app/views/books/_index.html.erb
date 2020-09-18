@@ -7,9 +7,7 @@
 			<th colspan="2"></th>
 		</tr>
 	</thead>
-	<tbody>
-		<% books.each do |book| %>
-			<%= render 'books/favorite',book: book %>
-		<% end %>
+	<tbody class="books_favorite">
+			<%= render 'books/books_favorite',books: books%>
 	</tbody>
 </table>
