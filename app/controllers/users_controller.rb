@@ -8,7 +8,24 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@book_new = Book.new
-  	@books = @user.books
+		@books = @user.books
+	#チャットに関する記述
+		@currentUserRoom = UserRoom.where(user_id:current_user.id)
+		@userRoom = UserRoom.where(user_id:@user.id)
+		unless @user.id == current_user.id
+			@currentUserRoom.each do |cur|
+				@userRoom.each do |ur|
+					if cur.room_id == ur.room_id
+						@isRoom = true
+						@roomId = cur.room_id
+					end
+				end
+			end
+			unless @isRoom
+				@room = Room.new
+				@userRoom =UserRoom.new
+			end
+		end
   end
 
   def edit
